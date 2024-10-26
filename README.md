@@ -22,7 +22,7 @@
 
 # RStudio on a Virtual Machine
 
-This is a guide to set up RStudio on a virtual machine ("VM"). The goal is to provide a computer capable of running analysis on large datasets.
+This is a guide to set up RStudio on a virtual machine ("VM"). The goal is to provide a computer capable of running analysis on large datasets. A PDF version is available in this repo.
 
 > Note: Double curly brackets `{{}}` are used to denote placeholders for you to enter *your* values.
 
@@ -203,7 +203,7 @@ You can elevate the new user's privileges with `sudo`. In the console, and as `r
 
 `usermod -aG sudo {{username}}`
 
-Now the new user can temporarily run commands as `root` by typing `sudo` in front of their commands (e.g.,`sudo apt update`).
+Now the new user can temporarily run commands as `root` by typing `sudo` in front of their commands (e.g., `sudo apt update`).
 
 ## Transfer Files
 
