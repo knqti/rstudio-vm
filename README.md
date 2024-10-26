@@ -63,7 +63,7 @@ Click `Create RStudio Droplet`.
 
 **Choose Size:** Select the specifications you need (options detailed [here](https://docs.digitalocean.com/products/droplets/concepts/choosing-a-plan/)).
 
-> Note: free trial accounts may need to request access to the Dedicated CPU/Premium CPUs.
+> Note: Free trial accounts may need to request access to the Dedicated CPU/Premium CPUs.
 
 **Backups:** Select if needed.
 
@@ -136,7 +136,9 @@ From your Projects page, click `Create` and then click `Droplets`.
 
 ![ubuntu image](assets/manual_rstudio_choose_image.png)
 
-**Choose Size:** Select the specifications you need (options detailed [here](https://docs.digitalocean.com/products/droplets/concepts/choosing-a-plan/)). Note free trial accounts may need to request access to the Dedicated CPU/Premium CPUs.
+**Choose Size:** Select the specifications you need (options detailed [here](https://docs.digitalocean.com/products/droplets/concepts/choosing-a-plan/)). 
+
+> Note: Free trial accounts may need to request access to the Dedicated CPU/Premium CPUs.
 
 **Backups:** Select if needed.
 
@@ -195,7 +197,7 @@ The following configurations may be useful to work effectively.
 
 ## Elevated Privileges
 
-Logging into the Droplet console defaults to `root` user with the highest privileges. By contrast, the new user (from [Console Steps: Add a new user](#console-steps-add-a-new-user)) has limited privileges.
+Logging into the Droplet console defaults to `root` user with the highest privileges. In contrast, the new user (from [Console Steps: Add a new user](#console-steps-add-a-new-user)) has limited privileges.
 
 You can elevate the new user's privileges with `sudo`. In the console, and as `root` user, enter the command:
 
@@ -220,7 +222,7 @@ Flag meanings:
 
 ## Firewalls
 
-For security, it's a good idea to set up a firewall. This helps prevent unauthorized access to your VM.
+It's a good idea to set up a firewall. This helps prevent unauthorized access to your VM.
 
 Navigate to your Droplet. On the left-panel menu, click `Networking`.
 
