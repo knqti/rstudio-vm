@@ -1,5 +1,5 @@
 **Table of Contents**
-- :cloud: [RStudio on a Virtual Machine](#rstudio-on-a-virtual-machine)
+- :computer: [RStudio on a Virtual Machine](#rstudio-on-a-virtual-machine)
 - :ballot_box_with_check: [Requirements](#requirements)
 - :zap: [Quick Setup](#quick-setup)
   - [Sign into your account](#sign-into-your-account)
@@ -18,7 +18,9 @@
 - :bulb: [Final Considerations](#final-considerations)
   - [Elevated Privileges](#elevated-privileges)
   - [Transfer Files](#transfer-files)
-  - [Firewalls](#firewalls)
+    - [Windows](#windows)
+    - [Mac/Linux](#maclinux)
+  - [Firewall](#firewall)
 
 # RStudio on a Virtual Machine
 
@@ -55,13 +57,13 @@ Click `Create RStudio Droplet`.
 
 **Choose Region:** Select the location closest to you.
 
-**Datacenter:** Leave as default.
+**Datacenter:** Leave the defaults.
 
 **Choose an image:** This should default to the Rstudio by Simply Statistics.
 
 ![rstudio image](assets/preconfig_rstudio_choose_image.png)
 
-**Choose Size:** Select the specifications you need (options detailed [here](https://docs.digitalocean.com/products/droplets/concepts/choosing-a-plan/)).
+**Choose Size:** Select the specifications you need ([more info on the options](https://docs.digitalocean.com/products/droplets/concepts/choosing-a-plan/)).
 
 > Note: Free trial accounts may need to request access to the Dedicated CPU/Premium CPUs.
 
@@ -75,7 +77,7 @@ Click `Create RStudio Droplet`.
 
 ![create droplet](assets/preconfig_rstudio_spin_up_droplet.png)
 
-More details on settings [here](https://docs.digitalocean.com/products/droplets/how-to/create/).
+[More info on settings](https://docs.digitalocean.com/products/droplets/how-to/create/).
 
 ## Set up a new user
 
@@ -130,13 +132,13 @@ From your Projects page, click `Create` and then click `Droplets`.
 
 **Choose Region:** Select the location closest to you.
 
-**Datacenter:** Leave as default.
+**Datacenter:** Leave the defaults.
 
-**Choose an image:** Unless you need a specific image, leave as default Ubuntu and default version.
+**Choose an image:** Unless you need a specific image, leave the default to Ubuntu (a Linux distribution) and its version.
 
 ![ubuntu image](assets/manual_rstudio_choose_image.png)
 
-**Choose Size:** Select the specifications you need (options detailed [here](https://docs.digitalocean.com/products/droplets/concepts/choosing-a-plan/)). 
+**Choose Size:** Select the specifications you need ([more info on the options](https://docs.digitalocean.com/products/droplets/concepts/choosing-a-plan/)).
 
 > Note: Free trial accounts may need to request access to the Dedicated CPU/Premium CPUs.
 
@@ -150,7 +152,7 @@ From your Projects page, click `Create` and then click `Droplets`.
 
 ![create droplet](assets/preconfig_rstudio_spin_up_droplet.png)
 
-More details on settings [here](https://docs.digitalocean.com/products/droplets/how-to/create/).
+[More info on settings](https://docs.digitalocean.com/products/droplets/how-to/create/).
 
 ## Install R and RStudio
 
@@ -168,7 +170,7 @@ This will open a new window with a console to your Droplet. Look to the bottom f
 
 ### Console Steps: Install R and  RStudio
 
-> Note: This guide used Ubuntu v. 24.04. Be sure to check the official install instructions [here](https://posit.co/download/rstudio-server/) if you're on a different image/version.
+> Note: This guide used Ubuntu v. 24.04. Be sure to check the [official install instructions](https://posit.co/download/rstudio-server/) if you're on a different image/version.
  
 Enter the following commands into the console.
 
@@ -188,12 +190,12 @@ The console will display RStudio Server as active. You can check the RStudio Ser
 
 ## Last steps
 
-1. See [Console Steps: Add a new user](#console-steps-add-a-new-user).
+1. See [Set up a new user](#set-up-a-new-user).
 2. See [Access RStudio](#5-access-rstudio).
 
 # Final Considerations
 
-The following configurations may be useful to work effectively.
+The following may be useful to work effectively.
 
 ## Elevated Privileges
 
@@ -203,13 +205,51 @@ You can elevate the new user's privileges with `sudo`. In the console, and as `r
 
 `usermod -aG sudo {{username}}`
 
-Now the new user can temporarily run commands as `root` by typing `sudo` in front of their commands (e.g., `sudo apt update`).
+Now the new user can temporarily elevate its privileges by typing `sudo` in front of their commands (e.g., `sudo apt update`).
 
 ## Transfer Files
 
-Use `rsync` to transfer large files from your local computer to the Droplet with the command:
+Below are a few ways to transfer files to your Droplet depending on your local computer's operating system.
 
-`rsync -avzP -e ssh {{/path/to/local/file}} {{username@VM-IP-Address}}:{{/path/to/destination/}}`
+### Windows
+
+**WinSCP**
+
+A graphical user interface tool.
+
+1. [Download it](https://winscp.net/eng/index.php)
+2. [Connect to your Droplet](https://winscp.net/eng/docs/guide_digitalocean)
+3. [Transfer files](https://winscp.net/eng/docs/guide_upload)
+
+**OpenSSH**
+
+A command line tool.
+
+> Note: Requires Windows 10 (build 1809 or later) and [PowerShell (5.1 or later)](https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell-on-windows?view=powershell-7.4)
+
+Enable OpenSSH [with PowerShell](https://learn.microsoft.com/en-us/windows-server/administration/openssh/openssh_install_firstuse?tabs=powershell&pivots=windows-server-2025#enable-openssh-for-windows-server-2025) or:
+
+1. From the Start menu, search and open "optional features"
+2. Click "Add a feature"
+3. Search "OpenSSH Client" and click install
+
+![optional features](assets/windows_optional_features.png)
+
+Transfer files by running the following command in your local terminal:
+
+`scp {{C:\path\to\local\file}} {{username}}@{{vm.ip.address}}:{{/path/to/remote/directory}}`
+
+> Note: Windows uses backslashes `\` while Mac/Linux uses forward slashes `/`.
+
+### Mac/Linux
+
+**rsync**
+
+A command line tool.
+
+Transfer files by running the following command in your local terminal:
+
+`rsync -avzP -e ssh {{/path/to/local/file}} {{username}}@{{vm.ip.address}}:{{/path/to/remote/directory/}}`
 
 Flag meanings:
 - `-a`: Archive mode (preserves permissions and directory structure)
@@ -220,9 +260,9 @@ Flag meanings:
 
 > Note: In case the transfer gets interrupted, just the run the same `rsync` command again and it will resume where it left off.
 
-## Firewalls
+## Firewall
 
-It's a good idea to set up a firewall. This helps prevent unauthorized access to your VM.
+A firewall helps secure your VM.
 
 Navigate to your Droplet. On the left-panel menu, click `Networking`.
 
@@ -236,6 +276,6 @@ Scroll down to Firewalls, click `Edit`, and `Create Firewall`. This will take yo
 
 ![firewall inbound](assets/manual_rstudio_firewall_inbound.png)
 
-**Outbound Rules:** Leave as default.
+**Outbound Rules:** Leave the defaults.
 
 **Apply to Droplets:** Select your Droplet and then click `Create Firewall`.
