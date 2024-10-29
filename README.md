@@ -1,39 +1,82 @@
 **Table of Contents**
-- :computer: [RStudio on a Virtual Machine](#rstudio-on-a-virtual-machine)
-- :ballot_box_with_check: [Requirements](#requirements)
-- :zap: [Quick Setup](#quick-setup)
+- [Introduction](#introduction)
+  - [Primer concepts (optional)](#primer-concepts-optional)
+    - [Virtual machine](#virtual-machine)
+    - [Linux](#linux)
+    - [Command-line interface](#command-line-interface)
+- [Requirements](#requirements)
+- [Quick Setup](#quick-setup)
   - [Sign into your account](#sign-into-your-account)
   - [Create the Droplet](#create-the-droplet)
   - [Configure the settings](#configure-the-settings)
   - [Set up a new user](#set-up-a-new-user)
     - [Console Steps: Add a new user](#console-steps-add-a-new-user)
   - [Access RStudio](#access-rstudio)
-- :wrench: [Manual Setup](#manual-setup)
+- [Manual Setup](#manual-setup)
   - [Sign into your account](#sign-into-your-account-1)
   - [Create the Droplet](#create-the-droplet-1)
   - [Configure the settings](#configure-the-settings-1)
   - [Install R and RStudio](#install-r-and-rstudio)
     - [Console Steps: Install R and  RStudio](#console-steps-install-r-and--rstudio)
   - [Last steps](#last-steps)
-- :bulb: [Final Considerations](#final-considerations)
+- [Final Considerations](#final-considerations)
   - [Elevated Privileges](#elevated-privileges)
   - [Transfer Files](#transfer-files)
     - [Windows](#windows)
     - [Mac/Linux](#maclinux)
   - [Firewall](#firewall)
 
-# RStudio on a Virtual Machine
+# Introduction
 
-This is a guide to set up RStudio on a virtual machine ("VM"). The goal is to provide a computer capable of running analysis on large datasets. A PDF version is available in this repo.
+This document shows you how to set up RStudio on a virtual machine (VM). By the end, you will have a computer that can be scaled to your needs.
 
-> Note: Double curly brackets `{{}}` are used to denote placeholders for you to enter *your* values.
+The target audience:
+- Researchers
+- Data scientists
+- Lab technicians
+
+Programming in RStudio is beyond the scope of this guide and will not be covered.
+
+## Primer concepts (optional)
+
+The following are useful concepts and terms to understand this document.
+
+### Virtual machine
+
+A physical computer (usually in a remote location) that *virtually* divides and allocates its computing resources (i.e., CPU, RAM, memory, etc.). Each allocation is a VM that can run its own operating systems and applications. Users can access the VM through the internet and easily increase/decrease its computing resources.
+
+### Linux
+
+A collection of operating systems. Many VM providers offer Linux as a popular option. Different "versions" of Linux are known as distributions. We will use the [Ubuntu](https://en.wikipedia.org/wiki/Ubuntu) distribution.
+
+### Command-line interface
+
+A program used to enter text-only commands to a computer. Commands are typed out and the computer outputs the results.
+
+The following is a typical Linux command-line interface display:
+
+![cli example](assets/cli_example.png)
+
+1. The user logged into the computer, in this example `root`.
+2. The name of the computer, in this example `manual-rstudio`.
+3. The current directory, in this example `~` (which denotes the user's home directory).
+4. The area to type commands.
+
+The following shows a typical Linux command input and its resulting output:
+
+![cli date](assets/cli_date_example.png)
+
+1. The command `date` is typed and entered.
+2. The output is `Tue Oct 29 18:36:52 UTC 2024`.
 
 # Requirements
 
 - A computer with internet access
-- [DigitalOcean account](https://try.digitalocean.com/freetrialoffer/)
+- A [DigitalOcean account](https://try.digitalocean.com/freetrialoffer/)
 
-We will use DigitalOcean as our VM provider. They offer a free trial and have pre-configured VMs ready to use. DigitalOcean calls their VMs "Droplets".
+We will use DigitalOcean as our VM provider. They offer a free trial and have pre-configured VMs ready to use. DigitalOcean calls their VMs ["Droplets"](https://docs.digitalocean.com/products/droplets/).
+
+> Note: Double curly brackets `{{}}` are used to denote placeholders for *your* values.
 
 # Quick Setup
 
