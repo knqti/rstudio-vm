@@ -1,4 +1,5 @@
 **Table of Contents**
+
 - [Introduction](#introduction)
   - [Primer concepts (optional)](#primer-concepts-optional)
     - [Virtual machine](#virtual-machine)
@@ -16,9 +17,10 @@
   - [2. Create the Droplet](#2-create-the-droplet-1)
   - [3. Configure the settings](#3-configure-the-settings-1)
   - [4. Install R and RStudio](#4-install-r-and-rstudio)
-  - [Last steps](#last-steps)
+  - [5. Set up a new user](#5-set-up-a-new-user)
+  - [5. Access RStudio](#5-access-rstudio-1)
 - [Final Considerations](#final-considerations)
-  - [Elevated Privileges](#elevated-privileges)
+  - [Elevate Privileges](#elevate-privileges)
   - [Transfer Files](#transfer-files)
     - [Windows](#windows)
     - [Mac/Linux](#maclinux)
@@ -127,7 +129,7 @@ Make note of your **ipv4 address** in the top menu bar. To the right, click `Con
 
 ![console](assets/preconfig_rstudio_console.png)
 
-A [CLI](#command-line-interface) window pops up. Look to the bottom for the line `root@{{your-hostname}}:~#`.
+A [CLI](#command-line-interface-cli) window pops up. Look to the bottom for the line `root@{{your-hostname}}:~#`.
 
 ![console](assets/preconfig_rstudio_cli.png)
 
@@ -138,7 +140,7 @@ Enter the following command into the CLI:
 Follow the output instructions:
 1. Enter a new password.
     > Note: The password is not displayed while typing.
-2. Enter the basic information or leave as "blank" to skip.
+2. Enter the basic information or leave as-is to skip.
 3. Enter `y` to confirm the information.
 
 ## 5. Access RStudio
@@ -202,7 +204,7 @@ In the top menu bar, note your **ipv4 address**. To the right, click the `Consol
 
 ![console](assets/preconfig_rstudio_console.png)
 
-A [CLI](#command-line-interface) window pops up. Look to the bottom for the line `root@{{your-hostname}}:~#`.
+A [CLI](#command-line-interface-cli) window pops up. Look to the bottom for the line `root@{{your-hostname}}:~#`.
 
 ![console](assets/manual_rstudio_cli.png)
 
@@ -220,26 +222,45 @@ Enter the following commands into the CLI:
 
 > Note: A pop-up window may appear during installation asking for configuration settings. Leave the default choice and press enter to continue.
 
-The CLI displays RStudio Server as active. You can always check the status with the command:
+RStudio Server is now active. You can always check the status with the command:
 
 `systemctl status rstudio-server`
 
 ![server active](assets/manual_rstudio_server_active.png)
 
-## Last steps
+## 5. Set up a new user
 
-1. See section [Set up a new user](#4-set-up-a-new-user).
-2. See section [Access RStudio](#5-access-rstudio).
+Enter the following command into the CLI:
+
+`adduser {{username}}`
+
+Follow the output instructions:
+1. Enter a new password.
+    > Note: The password is not displayed while typing.
+2. Enter the basic information or leave as-is to skip.
+3. Enter `y` to confirm the information.
+
+## 5. Access RStudio
+
+Open a new browser on your local computer. Enter your **ipv4 address** and `:8787` into the URL address bar. It should look like: 
+
+`{{your.ipv4.address}}:8787`
+
+Enter your new user credentials into the RStudio sign in page.
+
+![rstudio login](assets/preconfig_rstudio_login.png)
+
+Congrats! You now have access to RStudio.
+
+![rstudio browser](assets/preconfig_rstudio_browser.png)
 
 # Final Considerations
 
-The following may be useful to work effectively.
+The following options and tools may be useful.
 
-## Elevated Privileges
+## Elevate Privileges
 
-Logging into the Droplet console defaults to `root` user with the highest privileges. In contrast, the new user (from [Console Steps: Add a new user](#console-steps-add-a-new-user)) has limited privileges.
-
-You can elevate the new user's privileges with `sudo`. In the console, and as `root` user, enter the command:
+You can elevate your new user's privileges with `sudo`. In the Droplet CLI, and as `root` user, enter the command:
 
 `usermod -aG sudo {{username}}`
 
@@ -247,73 +268,67 @@ Now the new user can temporarily elevate its privileges by typing `sudo` in fron
 
 ## Transfer Files
 
-Below are a few ways to transfer files to your Droplet depending on your local computer's operating system.
+Below are a few options to transfer files from your local computer to your Droplet. Your local computer's operating system will dictate the available options.
 
 ### Windows
 
 **WinSCP**
 
-A graphical user interface tool.
+WinSCP is a separate software with a graphical user interface. It provides a "click-and-drag" method to transfer files.
 
-1. [Download it](https://winscp.net/eng/index.php)
+1. [Download WinSCP](https://winscp.net/eng/index.php)
 2. [Connect to your Droplet](https://winscp.net/eng/docs/guide_digitalocean)
 3. [Transfer files](https://winscp.net/eng/docs/guide_upload)
 
 **OpenSSH**
 
-A command line tool.
+OpenSSH is a CLI tool included in certain Windows versions (see the note below), but may be disabled by default.
 
-> Note: Requires Windows 10 (build 1809 or later) and [PowerShell (5.1 or later)](https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell-on-windows?view=powershell-7.4)
+> Note: Requires Windows 10 (build 1809 or later) and [PowerShell](https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell-on-windows?view=powershell-7.4) (5.1 or later)
 
 Enable OpenSSH [with PowerShell](https://learn.microsoft.com/en-us/windows-server/administration/openssh/openssh_install_firstuse?tabs=powershell&pivots=windows-server-2025#enable-openssh-for-windows-server-2025) or:
 
-1. From the Start menu, search and open "optional features"
-2. Click "Add a feature"
-3. Search "OpenSSH Client" and click install
+1. From the Start menu, search and open "optional features".
+2. Click "Add a feature".
+3. Search "OpenSSH Client" and click install.
 
 ![optional features](assets/windows_optional_features.png)
 
-Transfer files by running the following command in your local terminal:
+Enter the following command in your local CLI to transfer files:
 
 `scp {{C:\path\to\local\file}} {{username}}@{{vm.ip.address}}:{{/path/to/remote/directory}}`
 
-> Note: Windows uses backslashes `\` while Mac/Linux uses forward slashes `/`.
+[Click here](https://man.openbsd.org/scp) for more `scp` options.
+
+> Note: Windows uses backslashes `\` while Mac/Linux uses forward slashes `/` for directories.
 
 ### Mac/Linux
 
 **rsync**
 
-A command line tool.
+`rsync` is a CLI tool included in most Mac/Linux versions.
 
-Transfer files by running the following command in your local terminal:
+Enter the following command in your local CLI to transfer files:
 
 `rsync -avzP -e ssh {{/path/to/local/file}} {{username}}@{{vm.ip.address}}:{{/path/to/remote/directory/}}`
 
-Flag meanings:
-- `-a`: Archive mode (preserves permissions and directory structure)
-- `-v`: Verbose (shows detailed progress)
-- `-z`: Compress files during transfer
-- `-P`: Shows progress and allows partial transfers to be resumed
-- `-e ssh`: Use SSH for encryption
-
-> Note: In case the transfer gets interrupted, just the run the same `rsync` command again and it will resume where it left off.
+[Click here](https://linux.die.net/man/1/rsync) for more `rsync` options.
 
 ## Firewall
 
-A firewall helps secure your VM.
+A firewall can help secure your VM against unauthorized access.
 
-Navigate to your Droplet. On the left-panel menu, click `Networking`.
+Navigate to your Droplet:
 
+1. In the left-panel menu, click `Networking`.
 ![networking](assets/manual_rstudio_networking.png)
 
-Scroll down to Firewalls, click `Edit`, and `Create Firewall`. This will take you to a page to configure your firewall:
+1. Scroll down to Firewalls, click `Edit`.
+2. Click `Create Firewall`.
 
-**Name:** Create a name for this firewall.
-
-**Inbound Rules:** Select the `New rule` drop-down and click `Custom`. Change the Port Range to `8787` and then save it.
-
+- **Name:** Create a name for the firewall.
+- **Inbound Rules:** Select the `New rule` drop-down and click `Custom`. Change the Port Range to `8787` and then save it.
 ![firewall inbound](assets/manual_rstudio_firewall_inbound.png)
 
-**Outbound Rules:** Leave the defaults.
-
-**Apply to Droplets:** Select your Droplet and then click `Create Firewall`.
+- **Outbound Rules:** Leave the defaults.
+- **Apply to Droplets:** Select your Droplet and then click `Create Firewall`.
