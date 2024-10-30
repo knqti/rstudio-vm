@@ -18,7 +18,7 @@
   - [3. Configure the settings](#3-configure-the-settings-1)
   - [4. Install R and RStudio](#4-install-r-and-rstudio)
   - [5. Set up a new user](#5-set-up-a-new-user)
-  - [5. Access RStudio](#5-access-rstudio-1)
+  - [6. Access RStudio](#6-access-rstudio)
 - [Final Considerations](#final-considerations)
   - [Elevate Privileges](#elevate-privileges)
   - [Transfer Files](#transfer-files)
@@ -240,7 +240,7 @@ Follow the output instructions:
 2. Enter the basic information or leave as-is to skip.
 3. Enter `y` to confirm the information.
 
-## 5. Access RStudio
+## 6. Access RStudio
 
 Open a new browser on your local computer. Enter your **ipv4 address** and `:8787` into the URL address bar. It should look like: 
 
