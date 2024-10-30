@@ -12,10 +12,10 @@
   - [4. Set up a new user](#4-set-up-a-new-user)
   - [5. Access RStudio](#5-access-rstudio)
 - [Manual Setup](#manual-setup)
-  - [Sign into your account](#sign-into-your-account)
-  - [Create the Droplet](#create-the-droplet)
-  - [Configure the settings](#configure-the-settings)
-  - [Install R and RStudio](#install-r-and-rstudio)
+  - [1. Sign in](#1-sign-in-1)
+  - [2. Create the Droplet](#2-create-the-droplet-1)
+  - [3. Configure the settings](#3-configure-the-settings-1)
+  - [4. Install R and RStudio](#4-install-r-and-rstudio)
     - [Console Steps: Install R and  RStudio](#console-steps-install-r-and--rstudio)
   - [Last steps](#last-steps)
 - [Final Considerations](#final-considerations)
@@ -120,7 +120,7 @@ Click `Create RStudio Droplet`.
 
 ## 4. Set up a new user
 
-Under your project is the newly-created Droplet. The green dot next to the Hostname indicates it is active. Click your Droplet.
+Navigate to your Projects dashboard. Your newly-created Droplet is shown. Click your Droplet.
 
 ![new droplet](assets/preconfig_rstudio_resources.png)
 
@@ -137,10 +137,10 @@ Enter the following command into the console:
 `adduser {{username}}`
 
 Follow the output instructions:
-1. Enter a new password
-    > Note: The password is not displayed while typing
-2. Enter the basic information or leave as "blank" to skip
-3. Enter `y` to confirm the information
+1. Enter a new password.
+    > Note: The password is not displayed while typing.
+2. Enter the basic information or leave as "blank" to skip.
+3. Enter `y` to confirm the information.
 
 ## 5. Access RStudio
 
@@ -160,45 +160,42 @@ Congrats! You now have access to RStudio.
 
 Set up a Droplet with RStudio.
 
-## Sign into your account
+## 1. Sign in
 
-After creating your DigitalOcean account, sign into it.
+[Log in](https://cloud.digitalocean.com/login) to your DigitalOcean account.
 
-## Create the Droplet
+## 2. Create the Droplet
 
-From your Projects page, click `Create` and then click `Droplets`.
+Navigate to your Projects dashboard. Click `Create` and then `Droplets`.
 
 ![create droplet](assets/manual_rstudio_create_droplet.png)
 
-## Configure the settings
+## 3. Configure the settings
 
-**Choose Region:** Select the location closest to you.
+- **Choose Region:** Select the location closest to you.
+- **Datacenter:** Leave the defaults.
+- **Choose an image:** Select Rstudio by Simply Statistics.
 
-**Datacenter:** Leave the defaults.
+![rstudio image](assets/preconfig_rstudio_choose_image.png)
 
-**Choose an image:** Unless you need a specific image, leave the default to Ubuntu (a Linux distribution) and its version.
-
-![ubuntu image](assets/manual_rstudio_choose_image.png)
-
-**Choose Size:** Select the specifications you need ([more info on the options](https://docs.digitalocean.com/products/droplets/concepts/choosing-a-plan/)).
+- **Choose Size:** Select the specifications you need. [Click here](https://docs.digitalocean.com/products/droplets/concepts/choosing-a-plan/) for more specifications details.
 
 > Note: Free trial accounts may need to request access to the Dedicated CPU/Premium CPUs.
 
-**Backups:** Select if needed.
-
-**Choose Authentication Method:** Select the Password method for simplicity. Create a password for your Droplet.
+- **Backups:** Select if needed.
+- **Choose Authentication Method:** Select the Password method for simplicity. Create a password for your Droplet.
 
 ![authentication method](assets/preconfig_rstudio_auth_method.png)
 
-**Finalize Details:** Change the Hostname to help identify your Droplet. Click `Create Droplet`.
+- **Finalize Details:** Change the Hostname to help identify your Droplet. Click `Create Droplet`.
 
 ![create droplet](assets/preconfig_rstudio_spin_up_droplet.png)
 
-[More info on settings](https://docs.digitalocean.com/products/droplets/how-to/create/).
+[Click here](https://docs.digitalocean.com/products/droplets/how-to/create/) for more settings details.
 
-## Install R and RStudio
+## 4. Install R and RStudio
 
-Under your project, you will see the newly-created Droplet. Note the green dot next to the Hostname indicating it is active. Click your Droplet.
+Navigate to your Projects dashboard. Your newly-created Droplet is shown. Click your Droplet.
 
 ![new droplet](assets/manual_rstudio_resources.png)
 
