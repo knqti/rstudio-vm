@@ -27,7 +27,7 @@
 
 # Introduction
 
-This document shows you how to set up RStudio on a virtual machine (VM). By the end, you will have a computer that can be scaled to your needs.
+This document shows you how to set up RStudio on a virtual machine (VM). By the end, you will have a computer that can be scaled to your R-programming needs.
 
 The target audience:
 - Researchers
@@ -56,9 +56,9 @@ The following is a typical Linux command-line interface display:
 
 ![cli example](assets/cli_example.png)
 
-1. The user logged into the computer, in this example `root`.
-2. The name of the computer, in this example `manual-rstudio`.
-3. The current directory, in this example `~` (which denotes the user's home directory).
+1. The user who is logged into the computer - in this example `root`.
+2. The name of the computer - in this example `manual-rstudio`.
+3. The current directory - in this example `~` (which denotes the user's home directory).
 4. The area to type commands.
 
 The following shows a typical Linux command input and its resulting output:
