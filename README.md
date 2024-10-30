@@ -6,16 +6,15 @@
     - [Command-line interface](#command-line-interface)
 - [Requirements](#requirements)
 - [Quick Setup](#quick-setup)
+  - [1. Sign in](#1-sign-in)
+  - [2. Create the Droplet](#2-create-the-droplet)
+  - [3. Configure the settings](#3-configure-the-settings)
+  - [4. Set up a new user](#4-set-up-a-new-user)
+  - [5. Access RStudio](#5-access-rstudio)
+- [Manual Setup](#manual-setup)
   - [Sign into your account](#sign-into-your-account)
   - [Create the Droplet](#create-the-droplet)
   - [Configure the settings](#configure-the-settings)
-  - [Set up a new user](#set-up-a-new-user)
-    - [Console Steps: Add a new user](#console-steps-add-a-new-user)
-  - [Access RStudio](#access-rstudio)
-- [Manual Setup](#manual-setup)
-  - [Sign into your account](#sign-into-your-account-1)
-  - [Create the Droplet](#create-the-droplet-1)
-  - [Configure the settings](#configure-the-settings-1)
   - [Install R and RStudio](#install-r-and-rstudio)
     - [Console Steps: Install R and  RStudio](#console-steps-install-r-and--rstudio)
   - [Last steps](#last-steps)
@@ -76,19 +75,19 @@ The following shows a typical Linux command input and its resulting output:
 
 We will use DigitalOcean as our VM provider. They offer a free trial and have pre-configured VMs ready to use. DigitalOcean calls their VMs ["Droplets"](https://docs.digitalocean.com/products/droplets/).
 
-> Note: Double curly brackets `{{}}` are used to denote placeholders for *your* values.
+> Note: Double curly brackets `{{}}` denote placeholders for *your* values.
 
 # Quick Setup
 
-Set up a pre-configured Droplet that includes RStudio and other tools from the [Marketplace](https://marketplace.digitalocean.com/).
+Steps to set up a pre-configured Droplet that includes RStudio.
 
-## Sign into your account
+## 1. Sign in
 
-After creating your DigitalOcean account, sign into it.
+[Log in](https://cloud.digitalocean.com/login) to your DigitalOcean account.
 
-## Create the Droplet
+## 2. Create the Droplet
 
-Navigate to the pre-configured Droplet: [RStudio by Simply Statistics](https://marketplace.digitalocean.com/apps/rstudio).
+Select the pre-configured Droplet: [RStudio by Simply Statistics](https://marketplace.digitalocean.com/apps/rstudio).
 
 ![rstudio logo](assets/preconfig_rstudio_logo.png)
 
@@ -96,60 +95,60 @@ Click `Create RStudio Droplet`.
 
 ![create rstudio](assets/preconfig_rstudio_create_droplet.png)
 
-## Configure the settings
+## 3. Configure the settings
 
-**Choose Region:** Select the location closest to you.
-
-**Datacenter:** Leave the defaults.
-
-**Choose an image:** This should default to the Rstudio by Simply Statistics.
+- **Choose Region:** Select the location closest to you.
+- **Datacenter:** Leave the defaults.
+- **Choose an image:** Select Rstudio by Simply Statistics.
 
 ![rstudio image](assets/preconfig_rstudio_choose_image.png)
 
-**Choose Size:** Select the specifications you need ([more info on the options](https://docs.digitalocean.com/products/droplets/concepts/choosing-a-plan/)).
+- **Choose Size:** Select the specifications you need. [Click here](https://docs.digitalocean.com/products/droplets/concepts/choosing-a-plan/) for more specifications details.
 
 > Note: Free trial accounts may need to request access to the Dedicated CPU/Premium CPUs.
 
-**Backups:** Select if needed.
-
-**Choose Authentication Method:** Select the Password method for simplicity. Create a password for your Droplet.
+- **Backups:** Select if needed.
+- **Choose Authentication Method:** Select the Password method for simplicity. Create a password for your Droplet.
 
 ![authentication method](assets/preconfig_rstudio_auth_method.png)
 
-**Finalize Details:** Change the Hostname to help identify your Droplet. Click `Create Droplet`.
+- **Finalize Details:** Change the Hostname to help identify your Droplet. Click `Create Droplet`.
 
 ![create droplet](assets/preconfig_rstudio_spin_up_droplet.png)
 
-[More info on settings](https://docs.digitalocean.com/products/droplets/how-to/create/).
+[Click here](https://docs.digitalocean.com/products/droplets/how-to/create/) for more settings details.
 
-## Set up a new user
+## 4. Set up a new user
 
-Under your project, you will see the newly-created Droplet. Note the green dot next to the Hostname indicating it is active. Click your Droplet.
+Under your project is the newly-created Droplet. The green dot next to the Hostname indicates it is active. Click your Droplet.
 
 ![new droplet](assets/preconfig_rstudio_resources.png)
 
-In the top menu bar, note your **ipv4 address**. To the right, click the `Console`.
+Make note of your **ipv4 address** in the top menu bar. To the right, click `Console`.
 
 ![console](assets/preconfig_rstudio_console.png)
 
-This will open a new window with a console to your Droplet. Look to the bottom for the line `root@{{your-hostname}}:~#`. This is where you will type commands.
+A [command-line interface](#command-line-interface) window pops up. Look to the bottom for the line `root@{{your-hostname}}:~#`.
 
 ![console](assets/preconfig_rstudio_cli.png)
 
-### Console Steps: Add a new user
+Enter the following command into the console:
 
-Enter the following commands into the console.
+`adduser {{username}}`
 
-1. `adduser {{username}}`
-2. Enter a new password.
-    > Note: The password will not be displayed while typing.
-3. It will then ask for some basic info. You can leave them blank by pressing enter. At the end, enter `y` to confirm the info is correct.
+Follow the output instructions:
+1. Enter a new password
+    > Note: The password is not displayed while typing
+2. Enter the basic information or leave as "blank" to skip
+3. Enter `y` to confirm the information
 
-## Access RStudio
+## 5. Access RStudio
 
-Open a new browser and type your **ipv4 address** and `:8787` into the URL address bar: `{{your.ipv4.address}}:8787`
+Open a new browser on your local computer. Enter your **ipv4 address** and `:8787` into the URL address bar. It should look like: 
 
-This will take you to the RStudio sign in page. Enter the new user credentials you previously created.
+`{{your.ipv4.address}}:8787`
+
+Enter your new user credentials into the RStudio sign in page.
 
 ![rstudio login](assets/preconfig_rstudio_login.png)
 
@@ -233,8 +232,8 @@ The console will display RStudio Server as active. You can check the RStudio Ser
 
 ## Last steps
 
-1. See [Set up a new user](#set-up-a-new-user).
-2. See [Access RStudio](#5-access-rstudio).
+1. See section [Set up a new user](#4-set-up-a-new-user).
+2. See section [Access RStudio](#5-access-rstudio).
 
 # Final Considerations
 
