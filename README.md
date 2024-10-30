@@ -321,14 +321,15 @@ A firewall can help secure your VM against unauthorized access.
 Navigate to your Droplet:
 
 1. In the left-panel menu, click `Networking`.
+
 ![networking](assets/manual_rstudio_networking.png)
 
-1. Scroll down to Firewalls, click `Edit`.
-2. Click `Create Firewall`.
+2. Scroll down to Firewalls, click `Edit`.
+3. Click `Create Firewall`.
 
-- **Name:** Create a name for the firewall.
-- **Inbound Rules:** Select the `New rule` drop-down and click `Custom`. Change the Port Range to `8787` and then save it.
+   - **Name:** Create a name for the firewall.
+   - **Inbound Rules:** Select the `New rule` drop-down and click `Custom`. Change the Port Range to `8787` and then save it.
 ![firewall inbound](assets/manual_rstudio_firewall_inbound.png)
 
-- **Outbound Rules:** Leave the defaults.
-- **Apply to Droplets:** Select your Droplet and then click `Create Firewall`.
+   - **Outbound Rules:** Leave the defaults.
+   - **Apply to Droplets:** Select your Droplet and then click `Create Firewall`.
