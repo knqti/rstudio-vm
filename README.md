@@ -3,7 +3,7 @@
   - [Primer concepts (optional)](#primer-concepts-optional)
     - [Virtual machine](#virtual-machine)
     - [Linux](#linux)
-    - [Command-line interface](#command-line-interface)
+    - [Command-line interface (CLI)](#command-line-interface-cli)
 - [Requirements](#requirements)
 - [Quick Setup](#quick-setup)
   - [1. Sign in](#1-sign-in)
@@ -16,7 +16,6 @@
   - [2. Create the Droplet](#2-create-the-droplet-1)
   - [3. Configure the settings](#3-configure-the-settings-1)
   - [4. Install R and RStudio](#4-install-r-and-rstudio)
-    - [Console Steps: Install R and  RStudio](#console-steps-install-r-and--rstudio)
   - [Last steps](#last-steps)
 - [Final Considerations](#final-considerations)
   - [Elevated Privileges](#elevated-privileges)
@@ -48,7 +47,7 @@ A physical computer (usually in a remote location) that *virtually* divides and 
 
 A collection of operating systems. Many VM providers offer Linux as a popular option. Different "versions" of Linux are known as distributions. We will use the [Ubuntu](https://en.wikipedia.org/wiki/Ubuntu) distribution.
 
-### Command-line interface
+### Command-line interface (CLI)
 
 A program used to enter text-only commands to a computer. Commands are typed out and the computer outputs the results.
 
@@ -128,11 +127,11 @@ Make note of your **ipv4 address** in the top menu bar. To the right, click `Con
 
 ![console](assets/preconfig_rstudio_console.png)
 
-A [command-line interface](#command-line-interface) window pops up. Look to the bottom for the line `root@{{your-hostname}}:~#`.
+A [CLI](#command-line-interface) window pops up. Look to the bottom for the line `root@{{your-hostname}}:~#`.
 
 ![console](assets/preconfig_rstudio_cli.png)
 
-Enter the following command into the console:
+Enter the following command into the CLI:
 
 `adduser {{username}}`
 
@@ -174,9 +173,9 @@ Navigate to your Projects dashboard. Click `Create` and then `Droplets`.
 
 - **Choose Region:** Select the location closest to you.
 - **Datacenter:** Leave the defaults.
-- **Choose an image:** Select Rstudio by Simply Statistics.
+- **Choose an image:** Leave the defaults [Ubuntu](#linux) and its version.
 
-![rstudio image](assets/preconfig_rstudio_choose_image.png)
+![ubuntu image](assets/manual_rstudio_choose_image.png)
 
 - **Choose Size:** Select the specifications you need. [Click here](https://docs.digitalocean.com/products/droplets/concepts/choosing-a-plan/) for more specifications details.
 
@@ -203,15 +202,13 @@ In the top menu bar, note your **ipv4 address**. To the right, click the `Consol
 
 ![console](assets/preconfig_rstudio_console.png)
 
-This will open a new window with a console to your Droplet. Look to the bottom for the line `root@{{your-hostname}}:~#`. This is where you will type commands.
+A [CLI](#command-line-interface) window pops up. Look to the bottom for the line `root@{{your-hostname}}:~#`.
 
 ![console](assets/manual_rstudio_cli.png)
 
-### Console Steps: Install R and  RStudio
+> Note: We used Ubuntu version 24.04 at the time of writing. Be sure to check the [official install instructions](https://posit.co/download/rstudio-server/) if you are on a different image/version.
 
-> Note: This guide used Ubuntu v. 24.04. Be sure to check the [official install instructions](https://posit.co/download/rstudio-server/) if you're on a different image/version.
- 
-Enter the following commands into the console.
+Enter the following commands into the CLI:
 
 1. `sudo apt update`
 2. `sudo apt upgrade -y`
@@ -219,11 +216,13 @@ Enter the following commands into the console.
 4. `sudo apt install gdebi-core -y`
 5. `wget https://download2.rstudio.org/server/jammy/amd64/rstudio-server-2024.09.0-375-amd64.deb`
 6. `sudo gdebi rstudio-server-2024.09.0-375-amd64.deb`
-   - You will be asked for confirmation. Enter `y` to continue.
+   - Enter `y` to continue.
 
-> Note: You may receive pop-up windows during the installation process. Leave the default choices and press enter to continue.
+> Note: A pop-up window may appear during installation asking for configuration settings. Leave the default choice and press enter to continue.
 
-The console will display RStudio Server as active. You can check the RStudio Server status with the command: `systemctl status rstudio-server`
+The CLI displays RStudio Server as active. You can always check the status with the command:
+
+`systemctl status rstudio-server`
 
 ![server active](assets/manual_rstudio_server_active.png)
 
